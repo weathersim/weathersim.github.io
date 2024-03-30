@@ -5,115 +5,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather and Stuff</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .title {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+        }
+
+        .tabs {
+            text-align: center;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 0 2px;
+            background-color: #333;
+            display: inline-block;
+            border: none;
+            outline: none;
+            transition: 0.3s;
+            border-radius: 5px 5px 0 0;
+            color: #fff; /* Set tab label color to white */
+        }
+
+        .tab:hover, .active {
+            background-color: #555;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            clear: both;
+            border-radius: 0 0 5px 5px;
+            background-color: #333;
+            margin-top: 70px; /* Adjusted to account for fixed header */
+        }
+
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+            gap: 10px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .chart {
+            height: auto;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chart img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
 
+    <div class="header">
+        <h1 class="title">Weather & Stuff</h1>
+        <div class="tabs">
+            <button class="tab" onclick="openTab(event, 'map')">Map</button>
+            <button class="tab" onclick="openTab(event, 'charts')">Charts</button>
+            <button class="tab" onclick="openTab(event, 'japan')">Japan</button>
+            <button class="tab" onclick="openTab(event, 'hawaii')">Hawaii</button>
+            <button class="tab" onclick="openTab(event, 'australia')">Australia</button>
+            <button class="tab" onclick="openTab(event, 'others')">Others</button>
+        </div>
+    </div>
+
+    <div id="map" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=default&metricWind=kt&zoom=3	&overlay=wind&product=ecmwf&level=surface&lat=9.796&lon=-114.785" frameborder="0"></iframe>
+        </div>
+        <br>
+        <a href="https://severeweather.wmo.int/v2/index.html">WMO World Severe Weather Map</a>
+    </div>
+
+    <div id="charts" class="tabcontent">
+        <div class="chart-grid">
+            <div class="chart"><img src="https://aviationweather.gov/data/products/swh/00_sigwx_hi_m.gif" alt="HWD HIGH"></div>
+            <div class="chart"><img src="https://aviationweather.gov/data/products/swh/06_sigwx_hi_m.gif" alt="HWD HIGH"></div>
+            <div class="chart"><img src="https://aviationweather.gov/data/products/swh/12_sigwx_hi_m.gif" alt="HWD HIGH"></div>
+            <div class="chart"><img src="https://aviationweather.gov/data/products/swh/18_sigwx_hi_m.gif" alt="HWD HIGH"></div>
+        </div>
+        <br>
+        <br>
+        <img src="https://www.weather.gov/images/hfo/graphics/npac.gif" style="max-width: 100%; height: auto;" alt="OPC">
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="https://ocean.weather.gov/P_sfc_full_ocean_color.png" style="max-width: 100%; height: auto;" alt="OPC">
+        <br>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.weathercharts.org/japan-mslp.htm"></iframe>
+        </div>
+    </div>
+
+    <div id="japan" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://www.jma.go.jp/bosai/map.html#9/40.611/140.213/&elem=wind&contents=amedas&lang=en&interval=60"></iframe>
+        </div>
+    </div>
+
+    <div id="hawaii" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://www.wrh.noaa.gov/map/?obs=true&wfo=mtr"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.weather.gov/wrh/timeseries?site=KKRH1&hours=72"></iframe>
+        </div>
+        <br>
+        <br>
+        <a href="https://rapidrefresh.noaa.gov/hrrr/HAWAII/">HI HRRR NEST</a>
+        <br>
+        <a href="https://www.weather.gov/hfo/">HI NWS WFO</a>
+    </div>
+
+    <div id="australia" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://reg.bom.gov.au/products/IDW60801/IDW60801.94302.shtml"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://wind.willyweather.com.au/wa/midwest/kojarena.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://wind.willyweather.com.au/nt/alice-springs/alice-springs.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.willyweather.com.au/maps.html?style=ww&provider=id:0,type:3,offset:-90"></iframe>
+        </div>
+    </div>
+
+    <div id="others" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://globe.adsbexchange.com/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.weathernerds.org/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="http://www.meteo.psu.edu/ewall/ewall.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://spaceweather.com/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.drudgereport.com/"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabs;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("map").style.display = "block";
+    </script>
+
 </body>
-
-</html>
-<html>
-
-<body style="background-color:white;">
-
-    <body>
-
-        <h1>Weather & Stuff</h1>
-        <br>
-	<iframe width="1600" height="800" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=in&metricTemp=default&metricWind=kt&zoom=3	&overlay=wind&product=ecmwf&level=surface&lat=9.796&lon=-114.785" frameborder="0"></iframe>
-        <br>
-        <br>
-	<a href="https://severeweather.wmo.int/v2/index.html">WMO World Severe Weather Map</a>
-        <br>
-	<br>
-        <h2>Charts Test</h2>
-	<img src="https://aviationweather.gov/data/products/swh/00_sigwx_hi_m.gif" style="height:800px;width:1200px;" alt="HWD HIGH">
-	<img src="https://aviationweather.gov/data/products/swh/06_sigwx_hi_m.gif" style="height:800px;width:1200px;" alt="HWD HIGH">
-	<img src="https://aviationweather.gov/data/products/swh/12_sigwx_hi_m.gif" style="height:800px;width:1200px;" alt="HWD HIGH">
-	<img src="https://aviationweather.gov/data/products/swh/18_sigwx_hi_m.gif" style="height:800px;width:1200px;" alt="HWD HIGH">
-        <br>
-        <br>
-	<img src="https://www.weather.gov/images/hfo/graphics/npac.gif" style="height:1000px;width:1600px;" alt="OPC">
-        <br>
-        <br>
-        <br>
-        <br>
-	<img src="https://ocean.weather.gov/P_sfc_full_ocean_color.png" style="height:1000px;width:1600px;" alt="OPC">
-        <br>
-        <br>
-        <br>
-        <iframe src="https://www.weathercharts.org/japan-mslp.htm" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <h2>JAPAN</h2>
-	<br>
-	<a href="https://www.jma.go.jp/bosai/map.html#9/40.611/140.213/&elem=wind&contents=amedas&lang=en&interval=60">JMA Map</a>
-	<br>
-	<br>
-        <h2>HAWAII</h2>
-	<br>
-	<br>
-        <iframe src="https://www.wrh.noaa.gov/map/?obs=true&wfo=mtr" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <iframe src="https://www.weather.gov/wrh/timeseries?site=KKRH1&hours=72" style="height:800px;width:1600px;"></iframe>
-        <br>
-	<br>
-	<a href="https://rapidrefresh.noaa.gov/hrrr/HAWAII/">HI HRRR NEST</a>
-	<br>
-	<a href="https://www.weather.gov/hfo/">HI NWS WFO</a>
-        <br>
-        <br>
-        <h2>Australia</h2>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://reg.bom.gov.au/products/IDW60801/IDW60801.94302.shtml" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://wind.willyweather.com.au/wa/midwest/kojarena.html" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://wind.willyweather.com.au/nt/alice-springs/alice-springs.html" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://www.willyweather.com.au/maps.html?style=ww&provider=id:0,type:3,offset:-90" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://globe.adsbexchange.com/" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://www.weathernerds.org/" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="http://www.meteo.psu.edu/ewall/ewall.html" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://spaceweather.com/" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-        <iframe src="https://www.drudgereport.com/" style="height:800px;width:1600px;"></iframe>
-        <br>
-        <br>
-        <br>
-        <br>
-
-
-    </body>
 
 </html>
