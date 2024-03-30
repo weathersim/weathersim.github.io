@@ -108,10 +108,14 @@
             height: auto;
         }
 
-        /* Media Query for Mobile */
-        @media (max-width: 768px) {
+        /* Media query for mobile devices */
+        @media only screen and (max-width: 600px) {
             .iframe-container {
-                padding-top: 100%;
+                padding-top: 75%; /* Adjusted for smaller screens */
+            }
+
+            .tabcontent iframe {
+                height: 300px; /* Set height for mobile screens */
             }
         }
     </style>
@@ -184,4 +188,70 @@
         <a href="https://www.weather.gov/hfo/">HI NWS WFO</a>
     </div>
 
-    <div id="australia" class="tab
+    <div id="australia" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://reg.bom.gov.au/products/IDW60801/IDW60801.94302.shtml"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://wind.willyweather.com.au/wa/midwest/kojarena.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://wind.willyweather.com.au/nt/alice-springs/alice-springs.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.willyweather.com.au/maps.html?style=ww&provider=id:0,type:3,offset:-90"></iframe>
+        </div>
+    </div>
+
+    <div id="others" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://globe.adsbexchange.com/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.weathernerds.org/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="http://www.meteo.psu.edu/ewall/ewall.html"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://spaceweather.com/"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.drudgereport.com/"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabs;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("map").style.display = "block";
+    </script>
+
+</body>
+
+</html>
