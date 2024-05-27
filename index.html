@@ -131,6 +131,7 @@
             <button class="tab" onclick="openTab(event, 'japan')">Japan</button>
             <button class="tab" onclick="openTab(event, 'hawaii')">Hawaii</button>
             <button class="tab" onclick="openTab(event, 'australia')">Australia</button>
+            <button class="tab" onclick="openTab(event, 'Southern US')">Southern US</button>
             <button class="tab" onclick="openTab(event, 'others')">Others</button>
             <button class="tab" onclick="openTab(event, 'experimental')">Experimental</button>
         </div>
@@ -207,6 +208,28 @@
         <br>
         <div class="iframe-container">
             <iframe src="https://www.willyweather.com.au/maps.html?style=ww&provider=id:0,type:3,offset:-90"></iframe>
+        </div>
+    </div>
+
+
+    <div id="Southern US" class="tabcontent">
+        <div class="iframe-container">
+            <iframe src="https://weather.cod.edu/satrad/?parms=regional-southcentral-truecolor-24-0-100-1&checked=map&colorbar=undefined"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://aviationweather.gov/data/metar/?id=KEFD,KHUA&hours=12&include_taf=yes"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.wpc.ncep.noaa.gov/html/sfc-zoom.php"></iframe>
+        </div>
+        <br>
+        <br>
+        <div class="iframe-container">
+            <iframe src="https://www.wpc.ncep.noaa.gov/#page=frt"></iframe>
         </div>
     </div>
 
